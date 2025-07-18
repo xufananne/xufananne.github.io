@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fan Xu - Academic Homepage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.05)"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, #e8f4fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-info h2 {
+            font-size: 1.3rem;
+            color: #ecf0f1;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .profile-info h3 {
+            font-size: 1.1rem;
+            color: #bdc3c7;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .profile-info p {
+            font-size: 1rem;
+            color: #bdc3c7;
+            max-width: 500px;
+        }
+
+        nav {
+            background: rgba(52, 73, 94, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 0 2rem;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+        }
+
+        .education-item, .publication-item, .conference-item, .experience-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-item:hover, .publication-item:hover, .conference-item:hover, .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .education-item h3, .publication-item h3, .conference-item h3, .experience-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-meta, .publication-meta, .conference-meta, .experience-meta {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .research-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .contact-item strong {
+            margin-right: 1rem;
+            min-width: 80px;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-item {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .award-item h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-year {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="./profile.jpg" alt="Fan Xu" class="profile-img">
+                <div class="profile-info">
+                    <h1>Fan Xu</h1>
+                    <h2>M.Ed. Student in International Chinese Language Education</h2>
+                    <h3>Beijing Normal University, China</h3>
+                    <p>Specializing in Second Language Acquisition & Cognitive Neuroscience. Dedicated to exploring cognitive mechanisms and innovative applications of second language learning and acquisition.</p>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#output">Output</a></li>
+                    <li><a href="#project">Project</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#awards">Awards</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section id="about" class="fade-in">
+                <h2>About Me</h2>
+                <div class="about-text">
+                    <p>I am currently pursuing a Master's degree in International Chinese Language Education at Beijing Normal University, specializing in Second Language Acquisition & Cognitive Neuroscience under the supervision of Professor Feng Liping.</p>
+                    
+                    <p>My research interests focus on cognitive mechanisms of language predictive processing, effects of multimodal information on L2 reading, and embodied cognition in bilingual processing. I employ experimental methods such as eye-tracking and EEG to explore cognitive mechanisms of language processing.</p>
+                </div>
+            </section>
+
+            <section id="education" class="fade-in">
+                <h2>Education Background</h2>
+                <div class="education-item">
+                    <h3>M.Ed. in International Chinese Language Education</h3>
+                    <div class="education-meta">Beijing Normal University | Sep 2023 - Jun 2026 (Expected)</div>
+                    <p><strong>Average Score:</strong> 88.11/100<br>
+                    <strong>Specialization:</strong> Second Language Acquisition & Cognitive Neuroscience<br>
+                    <strong>Supervisor:</strong> Professor Feng Liping<br>
+                    <strong>Thesis:</strong> The Effects of Phonological Information in Different Modalities on Sentence Reading for Early CSL Learners: Evidence from Eye-Tracking (in progress)</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>B.A. in International Chinese Language Education (Honor Student)</h3>
+                    <div class="education-meta">Nanjing University of Information Science & Technology | Sep 2019 - Jun 2023</div>
+                    <p><strong>Average Score:</strong> 93.22/100 (Rank: 1/39)<br>
+                    <strong>Core Courses:</strong> Second Language Acquisition (92/100), Applied Linguistics (95/100), Introduction to Linguistics (97/100), Japanese (100/100)<br>
+                    <strong>Thesis:</strong> Linguistic Landscape in Historic and Cultural Towns of China: A Cultural Geography Approach<br>
+                    <strong>Award:</strong> Provincial 2nd Prize for Outstanding Undergraduate Graduation Thesis (TOP 0.1%)</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>Inter-University Coursework</h3>
+                    <div class="education-meta">Additional Academic Training</div>
+                    <p><strong>Chinese University of Hong Kong</strong> - Chinese Music, Aesthetics, and Globalization (2 credits) | Jul 2022<br>
+                    <strong>China University of Political Science and Law</strong> - International Organization Youth Talent Training Program (16 hours) | Dec 2023</p>
+                </div>
+            </section>
+
+            <section id="output" class="fade-in">
+                <h2>Research Output</h2>
+                
+                <h3 style="color: #2c3e50; margin-bottom: 2rem; font-size: 1.8rem;">Conference Presentations</h3>
+                <div class="conference-item">
+                    <h3>Cognitive Mechanisms and Application Research of Language Predictive Processing in International Chinese Language Education: A Systematic Review</h3>
+                    <div class="conference-meta">The 1st International Conference on Humanities and Technology in Chinese Language Education | July 2025 | Shanghai, China</div>
+                    <p><strong>Presentation Type:</strong> Oral Presentation<br>
+                    A systematic review of cognitive mechanisms of language predictive processing in International Chinese Language Education and its application prospects.</p>
+                </div>
+
+                <div class="conference-item">
+                    <h3>Embodied Cognition and Mental Simulation in Bilingual and Second Language Processing: A Systematic Review of Neural and Behavioral Evidence</h3>
+                    <div class="conference-meta">The 4th Conference on Biolinguistics and Language Acquisition | June 2025 | Beijing, China</div>
+                    <p><strong>Presentation Type:</strong> Oral Presentation<br>
+                    A comprehensive systematic review of neural and behavioral evidence for embodied cognition and mental simulation in bilingual and second language processing.</p>
+                </div>
+
+                <div class="conference-item">
+                    <h3>Prompt Engineering-Driven Generation and Multidimensional Evaluation of Graded Chinese L2 Reading Materials</h3>
+                    <div class="conference-meta">ICFULL & GLoCALL | May 2025 | Beijing, China</div>
+                    <p><strong>Presentation Type:</strong> Oral Presentation<br>
+                    Exploring prompt engineering-driven generation and multidimensional evaluation methods for graded Chinese L2 reading materials.</p>
+                </div>
+
+                <div class="conference-item">
+                    <h3>A Review of the Effects of Audio-Visual Multimodal Information on L2 Reading Processing</h3>
+                    <div class="conference-meta">Symposium on Theoretical Innovation and Practice in International Chinese Language Education | May 2025 | Tianjin, China</div>
+                    <p><strong>Presentation Type:</strong> Oral Presentation<br>
+                    A comprehensive review of the effects of audio-visual multimodal information on second language reading processing in International Chinese Language Education.</p>
+                </div>
+
+                <div class="conference-item">
+                    <h3>Linguistic Landscape of Historical and Cultural Towns in China: A Multimodal Corpus Study of Hongcheng Town</h3>
+                    <div class="conference-meta">The 16th Academic Conference of the Beijing Society of Linguistics | Nov 2023 | Beijing, China</div>
+                    <p><strong>Presentation Type:</strong> Oral Presentation<br>
+                    A multimodal corpus analysis of the linguistic landscape characteristics and cultural connotations of Hongcheng Town.</p>
+                </div>
+
+                <h3 style="color: #2c3e50; margin: 3rem 0 2rem 0; font-size: 1.8rem;">Publications</h3>
+                <div class="publication-item">
+                    <h3>Research on flipped classroom in international Chinese language education within the information ecology field</h3>
+                    <div class="publication-meta">Literature Education (Upper Edition), (11), 166-168 | 2022</div>
+                    <p><strong>Authors:</strong> Xu, F., & Xu, K.<br>
+                    <strong>Abstract:</strong> Exploring the application and optimization strategies of flipped classroom model in International Chinese Language Education under the information ecology theoretical framework.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <h3>A case discussion on the inheritance path of traditional Chinese handicraft intangible cultural heritage</h3>
+                    <div class="publication-meta">Literature Education (Upper Edition), (03), 176-178 | 2021</div>
+                    <p><strong>Authors:</strong> Xu, F., & Cao, X.<br>
+                    <strong>Abstract:</strong> Through case analysis, exploring the inheritance models and path innovations of traditional handicraft intangible cultural heritage.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <h3>New approaches to the dissemination and inheritance of traditional Chinese handicraft intangible cultural heritage: A case study of Nanjing</h3>
+                    <div class="publication-meta">Art & Technology, 34(13), 42-43 | 2021</div>
+                    <p><strong>Authors:</strong> Xu, F., Cao, X., Tang, W., Tan, P., & Chen, J.<br>
+                    <strong>Abstract:</strong> Using Nanjing as a case study to research innovative models of dissemination and inheritance of traditional handicraft ICH in the digital era.</p>
+                </div>
+
+                <div class="publication-item">
+                    <h3>Research on the dissemination path of traditional Chinese handicraft intangible cultural heritage from the perspective of the Internet: A case study of Nanjing</h3>
+                    <div class="publication-meta">Science Education and Culture Digest (Lower Edition), (06), 170-172 | 2021</div>
+                    <p><strong>Authors:</strong> Xu, F., Cao, X., Tang, W., Tan, P., & Chen, J.<br>
+                    <strong>Abstract:</strong> Analyzing digital dissemination strategies and practical paths of Nanjing traditional handicraft ICH from the perspective of Internet communication.</p>
+                </div>
+            </section>
+
+            <section id="project" class="fade-in">
+                <h2>Research Projects</h2>
+                <div class="experience-item">
+                    <h3>Dual-Mode Flipped Classroom Model: Innovation in International Chinese Language Education within Information Ecology Contexts</h3>
+                    <div class="experience-meta">Provincial College Students' Innovative Training Program | Apr 2022 – Apr 2023 (Project Leader)</div>
+                    <p>• Designed an A/B classroom integration model to optimize the learning environment interaction, developing a theoretical framework applicable to over five L2 course types (i.e., listening, writing)<br>
+                    • Published a paper on pedagogical framework construction and developed Multi-Format Video Encryption Software (Copyrighted) for digital resource copyright protection</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Nine Pathways to Sustainability: Digital Recontextualization of Nanjing's Intangible Cultural Heritage</h3>
+                    <div class="experience-meta">National College Students' Innovative Training Program | Aug 2020 - Oct 2021 (Project Leader)</div>
+                    <p>• Developed a 9-pathway sustainability framework based on ethnographic fieldwork and multimodal discourse analysis, across 15 Intangible Craft Heritage (ICH) cases<br>
+                    • Published three papers systematically deciphering transmission and inheritance of ICH, developing ICH cultural modules for International Chinese Language Education curricula</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Constructing a Chinese Children's Reading Resource System Based on Intelligent Text Readability Assessment Methods</h3>
+                    <div class="experience-meta">National Social Science Fund Project | Nov-Dec 2023 (Research Assistant)</div>
+                    <p>• Standardized over 30,000 characters from three Chinese children's textbooks through content categorization and readability tagging, supporting a corpus for reading resource recommendations</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Theoretical Framework and Academic System Construction for International Chinese Language Education</h3>
+                    <div class="experience-meta">Research Project by CLEC | Oct-Nov 2023 (Research Assistant)</div>
+                    <p>• Annotated over 800 theoretical texts using qualitative coding to support the construction of a theoretical framework and academic system for International Chinese Language Education</p>
+                </div>
+            </section>
+
+            <section id="teaching" class="fade-in">
+                <h2>Teaching Experience</h2>
+                <div class="experience-item">
+                    <h3>Chinese Instructor for University Courses</h3>
+                    <div class="experience-meta">Royal Academy of Cambodia (RAC) | Oct 2024 - Jan 2025</div>
+                    <p>• Taught "Advanced Modern Chinese Course" online to 18 fourth-year undergraduate students majoring in Mandarin Education across two classes, totaling 104 instructional hours<br>
+                    • Effectively enhanced cross-cultural teaching abilities and curriculum design skills</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Teaching Assistant for Immersion Chinese Program</h3>
+                    <div class="experience-meta">BNU - Quebec Confucius Institute | Aug 2024</div>
+                    <p>• Designed and led an 11-day "Chinese Characters + Ice Hockey" Summer Camp for 20 Canadian teenagers<br>
+                    • Served as teaching assistant for Chinese character classes based on embodied cognition theory<br>
+                    • Featured calligraphy, martial arts, cultural products creation, and a Beijing visit</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>International Language Exchange Activities</h3>
+                    <div class="experience-meta">Multiple Universities | 2021-2023</div>
+                    <p>• <strong>University of Canterbury, New Zealand</strong> - Mandarin Volunteer | Mar 2022<br>
+                    • <strong>University of Reading, UK</strong> - Mandarin Volunteer | Oct - Nov 2021<br>
+                    • <strong>University of Southern California, US</strong> - Mandarin Volunteer | Sept - Dec 2023</p>
+                </div>
+            </section>
+
+            <section id="awards" class="fade-in">
+                <h2>Honors & Awards</h2>
+                <div class="awards-grid">
+                    <div class="award-item">
+                        <h4>National Scholarship</h4>
+                        <p class="award-year">2021 | Ministry of Education, China (Top 0.2%)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Provincial Outstanding Graduate</h4>
+                        <p class="award-year">2023 | Jiangsu Provincial Education Department (Top 0.05%)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>2nd Prize for Outstanding Graduation Thesis</h4>
+                        <p class="award-year">2024 | Jiangsu Provincial Education Department (Top 0.1%)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Provincial Merit Student</h4>
+                        <p class="award-year">2022 | Jiangsu Provincial Education Department (Top 0.1%)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Top 10 Outstanding Students</h4>
+                        <p class="award-year">2023 | Nanjing University of Information Science & Technology (Top 0.03%)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>First-Class Scholarship</h4>
+                        <p class="award-year">2023 & 2024 | Beijing Normal University</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>BNU Book Ambassador</h4>
+                        <p class="award-year">2024 | Beijing Normal University (Only 10 students campus-wide)</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Outstanding College Volunteer</h4>
+                        <p class="award-year">2024 | Service duration exceeding 110 hours</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="fade-in">
+                <h2>Skills & Competencies</h2>
+                
+                <div class="about-grid">
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">💻 Programming & Data Science</h3>
+                        <div class="skills">
+                            <span class="skill-tag">MATLAB (Psychtoolbox)</span>
+                            <span class="skill-tag">R (tidyverse, lme4)</span>
+                            <span class="skill-tag">Python (NLTK, spaCy)</span>
+                            <span class="skill-tag">SPSS</span>
+                        </div>
+
+                        <h3 style="margin-bottom: 1rem; margin-top: 2rem;">🔬 Experimental Methods & Software</h3>
+                        <div class="skills">
+                            <span class="skill-tag">Eye-tracking (SR Research EyeLink EB, DV)</span>
+                            <span class="skill-tag">EEG (EEGLAB, currently learning)</span>
+                            <span class="skill-tag">fNIRS (NIRS-SPM, SPM12, currently learning)</span>
+                            <span class="skill-tag">PsychoPy</span>
+                            <span class="skill-tag">E-Prime</span>
+                            <span class="skill-tag">Praat</span>
+                            <span class="skill-tag">Adobe PS</span>
+                            <span class="skill-tag">Premiere Pro</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">🎓 Certifications</h3>
+                        <div style="line-height: 2;">
+                            <p>• Senior High School Chinese & English Teacher Qualification Certificate (China)</p>
+                            <p>• Certificate for Teachers of Chinese to Speakers of Other Languages (CTCSOL) (China)</p>
+                            <p>• CATTI Level 3 Translation Certificate (China)</p>
+                            <p>• National Computer Rank Examination Level 2 Certificate (China)</p>
+                        </div>
+
+                        <h3 style="margin-bottom: 1rem; margin-top: 2rem;">🌐 Languages</h3>
+                        <div style="line-height: 2;">
+                            <p>• <strong>Mandarin:</strong> Native (Grade 2A)</p>
+                            <p>• <strong>English:</strong> IELTS 6.5</p>
+                            <p>• <strong>Italian:</strong> Beginner</p>
+                            <p>• <strong>Japanese:</strong> Beginner</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="fade-in">
+                <h2>Contact me</h2>
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div style="line-height: 2.2; font-size: 1rem; text-align: left;">
+                        <p><strong>📧 Email:</strong> xufananne@163.com</p>
+                        <p><strong>📱 Phone:</strong> +86-13485120918</p>
+                        <p><strong>📍 Address:</strong> 19 Xinjiekouwai St. Haidian District, Beijing 100875, P.R. China</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Fan Xu. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = 'rgba(255,255,255,0.2)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
